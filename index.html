@@ -1,0 +1,588 @@
+html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Северное сияние: природа явления, цвета, места наблюдения и легенды народов Севера. Проект студентки группы ЭПЭб-25-2 Авроры Копыловой.">
+<meta name="author" content="Аврора Копылова, группа ЭПЭб-25-2">
+<title>Северное сияние — проект Авроры Копыловой</title>
+
+<style>
+/* ---------- Сброс ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --night: #0b1026;
+  --night-2: #161b3d;
+  --aurora-green: #4ade80;
+  --aurora-violet: #a78bfa;
+  --aurora-pink: #f472b6;
+  --card: #ffffff;
+  --bg: #f4f6fb;
+  --text: #1f2440;
+  --muted: #5b6178;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 0 16px 40px;
+}
+
+/* ============ ШАПКА с локальным фоновым изображением ============ */
+header.page-header {
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  padding: 90px 24px;
+  background:
+    linear-gradient(180deg, rgba(11,16,38,.55) 0%, rgba(11,16,38,.85) 100%),
+    url("images/aurora-header.jpg") center/cover no-repeat,
+    var(--night); /* подложка, если картинка ещё не загрузилась */
+  color: #fff;
+  border-radius: 0 0 20px 20px;
+  text-align: center;
+  box-shadow: 0 8px 28px rgba(11, 16, 38, 0.45);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Декоративные «звёзды» через ::before */
+header.page-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 15% 40%, #fff, transparent),
+    radial-gradient(2px 2px at 32% 70%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 58% 25%, #fff, transparent),
+    radial-gradient(2px 2px at 74% 60%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 88% 30%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 45% 85%, #fff, transparent);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+header.page-header h1 {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+  text-shadow: 0 0 20px rgba(167, 139, 250, 0.9);
+}
+
+header.page-header p {
+  position: relative;
+  z-index: 1;
+  font-size: 1.05rem;
+  max-width: 720px;
+  margin: 0 auto;
+  opacity: 0.95;
+}
+
+header.page-header .author {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+/* ============ НАВИГАЦИЯ на Flexbox ============ */
+nav.main-nav {
+  max-width: 1100px;
+  margin: 0 auto 32px;
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  padding: 12px;
+}
+
+nav.main-nav ul {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+nav.main-nav a {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--night-2);
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+nav.main-nav a:hover,
+nav.main-nav a:focus-visible {
+  background: linear-gradient(135deg, var(--aurora-green), var(--aurora-violet));
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ============ ОСНОВНОЙ КОНТЕНТ ============ */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+section, article {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 28px 24px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  border-left: 5px solid var(--aurora-violet);
+}
+
+section > h2,
+article > h2 {
+  font-size: 1.6rem;
+  color: var(--night-2);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px dashed #dfe6e9;
+}
+
+section h3 {
+  font-size: 1.25rem;
+  color: #7c3aed;
+  margin: 22px 0 10px;
+}
+
+section h4 {
+  font-size: 1.08rem;
+  color: var(--night-2);
+  margin: 16px 0 8px;
+}
+
+p { margin-bottom: 12px; }
+
+ul, ol { margin: 12px 0 12px 22px; }
+li { margin-bottom: 6px; }
+
+/* ============ Картинки ============ */
+figure {
+  margin: 18px 0;
+  text-align: center;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(11, 16, 38, 0.25);
+  transition: transform 0.3s ease;
+}
+
+figure img:hover { transform: scale(1.02); }
+
+figcaption {
+  margin-top: 8px;
+  font-size: 0.92rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ============ Галерея карточек на Flexbox ============ */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.gallery .card {
+  flex: 1 1 240px;
+  background: #f9fbfc;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e3e9ee;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gallery .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(11, 16, 38, 0.15);
+}
+
+.gallery .card img {
+  display: block;
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.gallery .card figcaption {
+  padding: 10px 12px;
+  font-style: normal;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+/* ============ Ссылки и кнопки ============ */
+a.external {
+  color: #7c3aed;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dotted #7c3aed;
+}
+
+a.external:hover {
+  color: var(--aurora-pink);
+  border-bottom-color: var(--aurora-pink);
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 22px;
+  background: linear-gradient(135deg, var(--aurora-green), var(--aurora-violet));
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
+}
+
+/* ============ Таблица ============ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 0.95rem;
+}
+
+th, td {
+  padding: 10px 12px;
+  border: 1px solid #dfe6e9;
+  text-align: left;
+}
+
+th { background: var(--night-2); color: #fff; }
+tbody tr:nth-child(even) { background: #f9fbfc; }
+
+/* ============ Цитата ============ */
+blockquote {
+  margin: 18px 0;
+  padding: 14px 20px;
+  background: #eef6fb;
+  border-left: 4px solid var(--aurora-green);
+  border-radius: 0 8px 8px 0;
+  color: var(--night-2);
+  font-style: italic;
+}
+
+/* ============ Подвал ============ */
+footer.page-footer {
+  max-width: 1100px;
+  margin: 36px auto 0;
+  padding: 24px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  border-top: 1px solid #dfe6e9;
+}
+
+footer.page-footer a { color: #7c3aed; text-decoration: none; }
+footer.page-footer a:hover { color: var(--aurora-pink); }
+
+/* ============ Адаптивность ============ */
+@media (max-width: 640px) {
+  header.page-header { padding: 50px 16px; border-radius: 0 0 12px 12px; }
+  section, article { padding: 20px 16px; }
+  nav.main-nav ul { flex-direction: column; }
+  nav.main-nav a { text-align: center; width: 100%; }
+  table { font-size: 0.85rem; }
+  footer.page-footer { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= ШАПКА ================= -->
+<header class="page-header">
+  <h1>Северное сияние</h1>
+  <p>Аврора Бореалис — одно из самых завораживающих явлений природы на Земле</p>
+  <span class="author">Аврора Копылова · группа ЭПЭб-25-2</span>
+</header>
+
+<!-- ================= НАВИГАЦИЯ ================= -->
+<nav class="main-nav" aria-label="Основная навигация">
+  <ul>
+    <li><a href="#nature">Природа явления</a></li>
+    <li><a href="#colors">Цвета и формы</a></li>
+    <li><a href="#places">Где увидеть</a></li>
+    <li><a href="#myths">Мифы и легенды</a></li>
+  </ul>
+</nav>
+
+<!-- ================= ОСНОВНОЙ КОНТЕНТ ================= -->
+<main>
+
+  <!-- ===== Раздел 1: Природа явления ===== -->
+  <section id="nature">
+    <h2>Природа северного сияния</h2>
+
+    <p>
+      Северное сияние, или <strong>аврора бореалис</strong> (Aurora Borealis),
+      возникает, когда заряженные частицы солнечного ветра сталкиваются
+      с атомами и молекулами газов в верхних слоях атмосферы Земли.
+      Магнитное поле планеты направляет эти частицы к полюсам — именно
+      поэтому сияние чаще всего наблюдается в высоких широтах.
+    </p>
+
+    <figure>
+      <img
+        src="images/aurora-forest.jpg"
+        alt="Зелёное северное сияние над заснеженным лесом"
+        width="1200" height="800" loading="lazy">
+      <figcaption>Классическое зелёное сияние над зимним пейзажем</figcaption>
+    </figure>
+
+    <blockquote>
+      «Небо вспыхивает зелёным, фиолетовым и розовым — и кажется,
+      что сама Вселенная танцует над твоей головой».
+    </blockquote>
+
+    <section>
+      <h3>Как это работает с точки зрения физики</h3>
+      <p>Процесс можно описать в несколько шагов:</p>
+      <ol>
+        <li>На Солнце происходят вспышки и выбросы плазмы.</li>
+        <li>Поток заряженных частиц (солнечный ветер) летит к Земле.</li>
+        <li>Магнитное поле Земли отклоняет частицы к полюсам.</li>
+        <li>Частицы сталкиваются с атомами кислорода и азота.</li>
+        <li>Атомы возбуждаются и излучают свет — это и есть сияние.</li>
+      </ol>
+
+      <section>
+        <h4>Высота и цвет свечения</h4>
+        <p>
+          Цвет сияния зависит от того, с каким газом столкнулась частица
+          и на какой высоте это произошло. Кислород на высоте около
+          100–150 км даёт зелёный свет, а на высоте 200–400 км — красный.
+          Азот отвечает за синие и фиолетовые оттенки.
+        </p>
+      </section>
+    </section>
+  </section>
+
+  <!-- ===== Раздел 2: Цвета и формы ===== -->
+  <section id="colors">
+    <h2>Цвета и формы северного сияния</h2>
+
+    <p>
+      Сияние бывает очень разным: от едва заметной зелёной дымки
+      до ярких всполохов, занимающих всё небо. Ниже — таблица
+      основных цветов и их причин.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Цвет</th>
+          <th>Газ</th>
+          <th>Высота</th>
+          <th>Комментарий</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Зелёный</td><td>Кислород</td><td>100–150 км</td>
+          <td>Самый частый цвет</td>
+        </tr>
+        <tr>
+          <td>Красный</td><td>Кислород</td><td>200–400 км</td>
+          <td>Встречается реже, на больших высотах</td>
+        </tr>
+        <tr>
+          <td>Синий / фиолетовый</td><td>Азот</td><td>до 100 км</td>
+          <td>Хорошо виден на фото с длинной выдержкой</td>
+        </tr>
+        <tr>
+          <td>Розовый</td><td>Азот + кислород</td><td>нижние слои</td>
+          <td>Появляется на краю сияния</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <section>
+      <h3>Основные формы</h3>
+      <ul>
+        <li><strong>Дуги</strong> — плавные полосы, растянутые по небу;</li>
+        <li><strong>Ленты</strong> — длинные изогнутые полосы, похожие на ткань;</li>
+        <li><strong>Короны</strong> — сияние, расходящееся лучами из одной точки;</li>
+        <li><strong>Всполохи</strong> — быстрые яркие вспышки, «танцующие» на небе.</li>
+      </ul>
+
+      <section>
+        <h4>Почему сияние «танцует»</h4>
+        <p>
+          Форма и движение сияния зависят от изменений магнитного поля
+          и потоков частиц. Из-за этого картинка на небе постоянно
+          меняется — иногда за несколько секунд.
+        </p>
+      </section>
+    </section>
+
+    <!-- Галерея карточек на Flexbox -->
+    <h3>Галерея оттенков</h3>
+    <div class="gallery">
+      <figure class="card">
+        <img
+          src="images/aurora-green.jpg"
+          alt="Ярко-зелёное северное сияние над снежным полем"
+          width="600" height="400" loading="lazy">
+        <figcaption>Зелёный — самый частый цвет</figcaption>
+      </figure>
+      <figure class="card">
+        <img
+          src="images/aurora-purple.jpg"
+          alt="Фиолетовые и розовые всполохи северного сияния в небе"
+          width="600" height="400" loading="lazy">
+        <figcaption>Фиолетовые и розовые оттенки</figcaption>
+      </figure>
+      <figure class="card">
+        <img
+          src="images/aurora-lake.jpg"
+          alt="Северное сияние над горами и отражение в воде"
+          width="600" height="400" loading="lazy">
+        <figcaption>Сияние и его отражение в воде</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== Раздел 3: Где увидеть ===== -->
+  <section id="places">
+    <h2>Где можно увидеть северное сияние</h2>
+
+    <p>
+      Лучшее время для наблюдения — с сентября по март, в ясные
+      морозные ночи, вдали от городских огней. Ниже — несколько
+      известных мест.
+    </p>
+
+    <figure>
+      <img
+        src="images/aurora-lake.jpg"
+        alt="Северное сияние над заснеженными горами и отражением в воде"
+        width="1200" height="800" loading="lazy">
+      <figcaption>Сияние отражается в воде — одно из самых красивых зрелищ</figcaption>
+    </figure>
+
+    <ul>
+      <li><strong>Мурманская область, Россия</strong> — доступный вариант для жителей России;</li>
+      <li><strong>Тромсё, Норвегия</strong> — один из мировых центров охоты за авророй;</li>
+      <li><strong>Рованиеми, Финляндия</strong> — знаменитая Лапландия;</li>
+      <li><strong>Исландия</strong> — сияние видно прямо из Рейкьявика;</li>
+      <li><strong>Йеллоунайф, Канада</strong> — почти гарантированный результат.</li>
+    </ul>
+
+    <p>
+      Подробнее о прогнозе сияния можно почитать на
+      <a class="external" href="https://www.gi.alaska.edu/monitors/aurora-forecast"
+         target="_blank" rel="noopener noreferrer">сайте геофизического института Аляски</a>.
+    </p>
+
+    <a class="btn"
+       href="https://www.swpc.noaa.gov/products/aurora-30-minute-forecast"
+       target="_blank" rel="noopener noreferrer">Посмотреть прогноз авроры</a>
+
+    <section>
+      <h3>Советы начинающему охотнику за сиянием</h3>
+      <ol>
+        <li>Уезжайте подальше от городских огней.</li>
+        <li>Проверяйте прогноз солнечной активности (Kp-индекс).</li>
+        <li>Берите штатив и камеру с ручными настройками.</li>
+        <li>Одевайтесь очень тепло — ждать придётся долго.</li>
+      </ol>
+
+      <section>
+        <h4>Что такое Kp-индекс</h4>
+        <p>
+          Kp-индекс — это число от 0 до 9, показывающее уровень
+          геомагнитной активности. Чем выше значение, тем южнее
+          можно увидеть сияние. Для Мурманска часто хватает Kp 2–3,
+          а для средней полосы России нужен Kp 7 и выше.
+        </p>
+      </section>
+    </section>
+  </section>
+
+  <!-- ===== Раздел 4: Мифы и легенды ===== -->
+  <section id="myths">
+    <h2>Мифы и легенды народов Севера</h2>
+
+    <p>
+      Северное сияние веками вдохновляло людей. Разные народы
+      объясняли его по-своему.
+    </p>
+
+    <section>
+      <h3>Как объясняли сияние раньше</h3>
+
+      <article>
+        <h4>Саамы</h4>
+        <p>
+          Саамы верили, что сияние — это души предков, танцующие
+          на небе. Считалось, что шуметь и насмехаться над авророй
+          нельзя — это могло разгневать духов.
+        </p>
+      </article>
+
+      <article>
+        <h4>Финны</h4>
+        <p>
+          В финской мифологии сияние называли «лисьим огнём»
+          (revontulet). По легенде, волшебная лиса бежала по
+          заснеженным сопкам, и её хвост высекал искры,
+          которые взлетали в небо.
+        </p>
+      </article>
+
+      <article>
+        <h4>Викинги</h4>
+        <p>
+          Скандинавы считали сияние отблеском доспехов валькирий,
+          которые несли погибших воинов в Вальхаллу.
+        </p>
+      </article>
+    </section>
+  </section>
+
+</main>
+
+<!-- ================= ПОДВАЛ ================= -->
+<footer class="page-footer">
+  <p>© 2026 Аврора Копылова, группа ЭПЭб-25-2. Учебный проект по HTML5.</p>
+  <p>Изображения — из личного архива автора.</p>
+</footer>
+
+</body>
+</html>
